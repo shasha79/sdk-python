@@ -23,13 +23,16 @@ class DirectusClient:
             self.access = data['data']["token"]
 
     def get_items_list(self, collection):
-        return requests.get(self.url + "/items/" + collection).json()
+        headers = {"Authorization": "Bearer " + self.access}
+        return requests.get(self.url + "/items/" + collection, headers=headers).json()
 
     def get_item(self, collection, id):
-        return requests.get(self.url + "/items/" + collection + "/" + str(id)).json()
+        headers = {"Authorization": "Bearer " + self.access}
+        return requests.get(self.url + "/items/" + collection + "/" + str(id), headers=headers).json()
 
     def create_item(self, collection, item):
-        return requests.post(self.url + "/items/" + collection, data=item)
+        headers = {"Authorization": "Bearer " + self.access}
+        return requests.post(self.url + "/items/" + collection, data=item, headers=headers)
 
     def get_files_list(self):
         headers = {"Authorization": "Bearer " + self.access}
