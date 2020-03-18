@@ -22,9 +22,9 @@ class DirectusClient:
 
             self.access = data['data']["token"]
 
-    def get_items_list(self, collection):
+    def get_items_list(self, collection, limit=200):
         headers = {"Authorization": "Bearer " + self.access}
-        return requests.get(self.url + "/items/" + collection, headers=headers).json()
+        return requests.get(self.url + "/items/" + collection + "?limit=" + str(limit), headers=headers).json()
 
     def get_item(self, collection, id):
         headers = {"Authorization": "Bearer " + self.access}
