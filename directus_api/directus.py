@@ -22,6 +22,13 @@ class DirectusClient:
 
             self.access = data['data']["token"]
 
+    def refresh_token(self, ):
+        combined_url = self.url + '/auth/refresh'
+        r = requests.post(combined_url, data={"token": self.access})
+        data = r.json()
+        self.access = data['data']["token"]
+
+
     def get_items_list(self, collection, limit=200):
         """Function list items from collection. 
         
